@@ -76,22 +76,14 @@ To train a Machine Learning model to predict the  probability that a machine wil
 ### Data sources
 The relevant data sources for predictive maintenance include, but are not limited to:
 
+- Machine operating conditions & usage (telemetry data)
+- Error History/ logs
 - Failure history
-- Maintenance/repair history
-- Machine operating conditions
 - Equipment metadata
+- Maintenance/repair history (components)
 
-## Failure history
-Failure events are rare in PdM applications. However, when building prediction models, the algorithm needs to learn about a component's normal operational pattern, as well as its failure patterns. So the training data should contain sufficient number of examples from both categories. Maintenance records and parts replacement history are good sources to find failure events. With the help of some domain knowledge, anomalies in the training data can also be defined as failures.
 
-![Screenshot](Failure_history.png)
-
-## Maintenance/repair history
-Maintenance history of an asset contains details about components replaced, repair activities performed etc. These events record degradation patterns. Absence of this crucial information in the training data can lead to misleading model results. Failure history can also be found within maintenance history as special error codes, or order dates for parts. Additional data sources that influence failure patterns should be investigated and provided by domain experts.
-
-![Screenshot](Maintenance_history.png)
-
-## Machine conditions and usage:
+## Machine conditions and usage (Telemetry data):
 Sensor based (or other) streaming data of the equipment in operation is an important data source. A key assumption in PdM is that a machine's health status degrades over time during its routine operation. The data is expected to contain time-varying features that capture this aging pattern, and any anomalies that leads to degradation. The temporal aspect of the data is required for the algorithm to learn the failure and non-failure patterns over time. Based on these data points, the algorithm learns to predict how many more units of time a machine can continue to work before it fails.
 
 ![Screenshot](Telemetry_data.png)
@@ -101,9 +93,72 @@ These are non-breaking errors thrown while the  machine is still operational and
 
 ![Screenshot](Error_history.png)
 
-## Machine features:
+## Failure history
+Failure events are rare in PdM applications. However, when building prediction models, the algorithm needs to learn about a component's normal operational pattern, as well as its failure patterns. So the training data should contain sufficient number of examples from both categories. Maintenance records and parts replacement history are good sources to find failure events. With the help of some domain knowledge, anomalies in the training data can also be defined as failures.
+
+![Screenshot](Failure_history.png)
+
+## Machine features / equipment data:
 metadata about the equipment. Examples are the equipment make, model, manufactured date, start date of service, location of the system, and other technical specifications.
 
 ![Screenshot](Machine_features.png)
 
+## Maintenance/repair history (components)
+Maintenance history of an asset contains details about components replaced, repair activities performed etc. These events record degradation patterns. Absence of this crucial information in the training data can lead to misleading model results. Failure history can also be found within maintenance history as special error codes, or order dates for parts. Additional data sources that influence failure patterns should be investigated and provided by domain experts.
+
+![Screenshot](Maintenance_history.png)
+
+
+# Data types
+
+Given the above data sources, the two main data types observed in PdM domain are:
+
+**Temporal data:** Operational telemetry, machine conditions, work order types, priority codes that will have timestamps at the time of recording. Failure, maintenance/repair, and usage history will also have timestamps associated with each event.
+
+**Static data:*** Machine features and operator features in general are static since they describe the technical specifications of machines or operator attributes. If these features could change over time, they should also have timestamps associated with them.
+
+# Exploring the data sets
+
+## Dtat set 1- Telemetry Data
+The first data source is the telemetry time-series data which consists of voltage, rotation, pressure, and vibration measurements collected from 100 machines in real time averaged over every hour collected during the year 2015. Below, we display the first 10 records in the dataset. A summary of the whole dataset is also provided.
+
+**Mean voltage**
+
+![Screenshot](mean_voltage.JPG)
+
+**Machine-wise maximum pressure**
+
+![Screenshot](max_pressure_machinewise.JPG)
+
+**Check for auto correlation**
+
+![Screenshot](auto_correlation.JPG)
+
+## Plotting the trend chart for the mean of various features.
+
+![Screenshot](Trend_in_mean_volt.JPG)
+
+![Screenshot](Trend_in_mean_rotation.JPG)
+
+![Screenshot](Trend_in_mean_pressure.JPG)
+
+![Screenshot](Trend_in_mean_vibration.JPG)
+
+## Dtat set 2- Error History 
+The second major data source is the error logs. These are non-breaking errors thrown while the machine is still operational and do not constitute as failures. The error date and times are rounded to the closest hour since the telemetry data is collected at an hourly rate.
+
+![Screenshot](data2_analysis.JPG)
+
+## Dtat set 3- Failure history
+These are the records of component replacements due to failures. Each record has a date and time, machine ID, and failed component type.
+
+![Screenshot](data3_analysis.JPG)
+
+## Dtat set 4- Machine features
+This data set includes some information about the machines: model type and age (years in service).
+
+## Dtat set 5- Maintenance
+These are the scheduled and unscheduled maintenance records which correspond to both regular inspection of components as well as failures. A record is generated if a component is replaced during the scheduled inspection or replaced due to a breakdown. The records that are created due to breakdowns will be called failures
+
+![Screenshot](data5_analysis.JPG)
 
