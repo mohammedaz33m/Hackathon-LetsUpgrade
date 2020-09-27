@@ -10,7 +10,7 @@ Hack with LetsUpgrade is a 36 hours-long program conducted by LetsUpgrade. Expos
 
 ## Team- Gearhead
 ### Members- Aditya lahariya, Mohammed Azeem, Vikas Yadav
-### Project- Predictive maintenance (PdM) (A Microsoft Azure case study)
+### Project- Predictive maintenance (PdM) (A Microsoft Azure case study- https://notebooks.azure.com/Microsoft/projects/PredictiveMaintenance/html/Predictive%20Maintenance%20Modeling%20Guide%20Python%203%20Notebook.ipynb)
 
 
 # Understanding the Domain 
