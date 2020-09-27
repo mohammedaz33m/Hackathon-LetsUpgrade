@@ -122,6 +122,8 @@ Given the above data sources, the two main data types observed in PdM domain are
 ## Dtat set 1- Telemetry Data
 The first data source is the telemetry time-series data which consists of voltage, rotation, pressure, and vibration measurements collected from 100 machines in real time averaged over every hour collected during the year 2015. Below, we display the first 10 records in the dataset. A summary of the whole dataset is also provided.
 
+![Screenshot](telemetry.JPG)
+
 **Mean voltage**
 
 ![Screenshot](mean_voltage.JPG)
@@ -146,12 +148,12 @@ The first data source is the telemetry time-series data which consists of voltag
 
 ## Removing of the trend if any
 
-![Screenshot](Removing Trend.JPG)
+![Screenshot](Removing_Trend.JPG)
 
 ## Dtat set 2- Error History 
 The second major data source is the error logs. These are non-breaking errors thrown while the machine is still operational and do not constitute as failures. The error date and times are rounded to the closest hour since the telemetry data is collected at an hourly rate.
 
-![Screenshot](data2_analysis.JPG)
+![Screenshot](error_ID.JPG)
 
 ## Dtat set 3- Failure history
 These are the records of component replacements due to failures. Each record has a date and time, machine ID, and failed component type.
@@ -161,8 +163,34 @@ These are the records of component replacements due to failures. Each record has
 ## Dtat set 4- Machine features
 This data set includes some information about the machines: model type and age (years in service).
 
+![Screenshot](machines.JPG)
+
 ## Dtat set 5- Maintenance
 These are the scheduled and unscheduled maintenance records which correspond to both regular inspection of components as well as failures. A record is generated if a component is replaced during the scheduled inspection or replaced due to a breakdown. The records that are created due to breakdowns will be called failures
 
 ![Screenshot](data5_analysis.JPG)
+
+
+
+# Feature Engineering
+
+## - Aggregation of Telemetry data for 3H
+
+![Screenshot](3H_agg.JPG)
+
+## - Aggregation of Telemetry data for 24H
+
+![Screenshot](24H_agg.JPG)
+
+## Concat both the above file 
+
+![Screenshot](3H_24H_join.JPG)
+
+## Number of days since the last replacement was done
+
+![Screenshot](day_since_last_replacement.JPG)
+
+# Final data set
+
+![Screenshot](Final_data_set1.JPG) ![Screenshot](Final_data_set2.JPG)
 
